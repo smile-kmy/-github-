@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+</body>
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+    class Demo extends React.Component{
+        state = {isHot:false};
+        showDate1 = ()=>{
+            const {input1} = this;
+            alert(input1.value)
+
+        }
+        showDate2 = (event)=>{
+            if(event.target.value!=""){
+                alert(event.target.value)
+
+            }else{
+                alert('请输入文字')
+
+            }
+        }
+        changeWeather = ()=>{
+            const {isHot} = this.state;
+            
+            this.setState({isHot:!isHot})
+            // console.log(isHot)
+        }
+        render(){
+            const {isHot} = this.state;
+            return (
+                <div>
+                    <input ref={c => this.input1=c} placeholder="点击后输出搜索框内容" type="text"/>&nbsp;
+                    <button onClick={this.showDate1}>点击</button><br/>
+                    <input onBlur={this.showDate2} placeholder="失去焦点后输出搜索框内容" type="text"/>
+                    <h1>今天天气很{isHot ? '炎热':'寒冷'}</h1>
+                    <button onClick={this.changeWeather}>点击切换天气</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Demo/>,document.getElementById('test'))
+
+
+    // class Demo extends React.Component {
+    //     state = {isHot: false}
+
+    //     showInfo = ()=>{
+    //         const {input1} = this;
+    //         console.log(this)
+    //         console.log(input1.value)
+    //     }
+    //     showInfo2 = ()=>{
+    //         const {input2} = this;
+           
+    //         console.log(input2.value)
+    //     }
+    //     ChangeWeather = ()=>{
+    //         const {isHot} = this.state
+    //         this.setState({isHot : !isHot})
+    //     }
+    //     render(){
+    //         const {isHot} = this.state
+    //         return (
+    //             <div>
+    //                 <h1>今天的天气很{isHot ? '炎热':'寒冷'}</h1>
+    //                 <button onClick={this.ChangeWeather}>点击切换天气</button><br/>
+    //                 <input ref = {(c)=>{this.input1 = c;console.log('@',c)}} type="text" placeholder="点击输出文字" /><br/><br/>
+    //                 <button onClick={this.showInfo}>按钮</button><br/><br/>
+    //                 <input ref ={(c) => {this.input2 = c}} onBlur = {this.showInfo2} type="text"/>
+ 
+    //             </div>
+    //         )
+    //     }
+  
+    // }
+    // ReactDOM.render(<Demo a = "0" b="a"/>,document.getElementById('test'))
+</script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+   	<style>
+       .red{
+         background-color: red;
+       }
+     </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <!-- <script type="text/babel" src="./js/bbb.js"></script> -->
+    
+  </body>
+  <script src="./js/react.development.js"></script>
+  <script src="./js/react-dom.development.js"></script>
+  <script src="./js/babel.min.js"></script>
+
+  <!--jsx小练习
+     【js语句(代码)】与【js表达式】
+      1.表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方
+         例(1).a
+           (2).a+b
+           (3).demo(1)
+           (4).arr.map()
+           (5).function test(){}
+      2.语句(代码)
+         例(1)if(){}
+           (2)for(){}
+  -->
+
+  <script type="text/babel">
+    function Demo(){
+       return <h1>Hello world</h1>
+   }
+    // const data = ['Angular','React','Vue']
+    // const VDOM = (
+    //   <div>
+    //      <h1>前端js框架列表</h1>
+    //      <ul>
+    //         {
+    //           data.map((num,index)=>{
+    //             return <li key={index}>{num}</li>
+    //           })
+    //         }
+    //      </ul>
+    //   </div>
+    // )
+    ReactDOM.render(<Demo/>,document.getElementById("example"))
+  </script>
+
+    <!--jsx语法规则-->
+  <!-- <script type="text/babel">
+      const myID = "aT"
+      const myData = 'Hello,world'
+    /*1.创建虚拟DOM*/
+     const VDOM=(
+       <div className='red' id={myID.toLowerCase()}>
+        <h1 style={{color:'white',fontSize:'30px'}}>{myData.toLowerCase()}</h1>
+       </div>
+     )
+     /*渲染虚拟DOM到页面*/
+     ReactDOM.render(VDOM,document.getElementById("example"))
+     /*
+     jsx语法规则
+      1.定义虚拟DOM时，不要写引号。
+      2.标签中混入JS表达式时要用{}
+      3.样式的类名指定不要用class,用className
+      4.内联样式要用style={{key:value}}形式去写
+      5.只有一个根标签
+      6.标签必须闭合
+      7.标签首字母
+        (1).若小写字母开头，则将该标签转为HTML中同名元素，若HTML中无该元素则报错
+        (2).若大写字母开头，react就去渲染对应组件，若组件没定义，则报错
+     */
+  </script> -->
+</html>

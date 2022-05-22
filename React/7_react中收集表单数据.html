@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+        }
+        .a{
+            width: 100%;
+            margin: 0 auto;
+        }
+        .b{
+            margin: 50px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="test" class="a"></div>
+    
+</body>
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+//#region
+    /*
+        高阶函数：如果一个函数符合下面任何一个条件，它就是一个高阶函数
+           1.若A函数接收到的参数是一个函数，A就是一个高阶函数
+           2.若A调用的函数是一个函数，季也是一个高阶函数
+        
+        函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码模式
+    */
+//#endregion
+    class Login extends React.Component{
+        state = {
+            username : '',
+            password : '',
+            isHot : false
+        }
+
+        switchWeather = ()=>{
+            const {isHot} = this.state;
+            this.setState({isHot:!isHot})
+        }
+        saveFormData = (dataType)=>{
+            return (event)=>{
+                this.setState({[dataType]:event.target.value});
+                console.log(dataType,event.target.value)
+            }
+        }
+        saveFormData1 = (dataType,value)=>{
+            this.setState({[dataType]:value});
+            console.log(`你的用户名是 ${dataType},你的密码是 ${value}`)
+
+        }
+        // savePassword = (event)=>{
+        //    this.setState({password:event.target.value})
+        // }
+        handleSubmit = (event)=>{
+            event.preventDefault();
+            const {username,password} = this.state;
+            alert(`你的用户名是 ${username},你的密码是 ${password}`)
+        }
+        render(){
+            const {isHot} = this.state
+          return (
+            <div class="b">
+                <form onSubmit={this.handleSubmit} target="_blank">
+                    用户名：<input onChange={(event)=>{this.saveFormData1("username",event.target.value)}} type="text" name="username"/><br/><br/>
+                    密码：<input onChange={this.saveFormData('password')} type="password" name="password"/><br/><br/>
+                    <button>登录</button>
+                </form>
+                <p>今天天气很{isHot ? "炎热":"凉爽"}</p>
+                <button onClick={this.switchWeather}>点击切换天气</button>
+            </div>
+
+          )
+        }
+    }
+    ReactDOM.render(<Login/>,document.getElementById('test'))
+</script>
+</html>

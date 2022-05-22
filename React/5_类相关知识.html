@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    /*
+      总结：
+        1.类中的构造器不是必须写的，要对实例进行一些初始化的操作，如添加指定属性时才写。
+        2.如果A类继承B类，且A类中写了构造器，那么A类构造器中必须调用super
+        3.类中定义的方法，都放在类的原型对象，供实例使用
+    */
+    class Dog {
+        constructor(name,age){
+            this.name = name
+            this.age = age
+        }
+        speake(){
+            console.log(`我的狗叫${this.name},狗的年龄是${this.age}`)
+        }
+    }
+    class Son extends Dog {
+        /**/
+        constructor(name,age,hair){
+            super(name,age);
+            this.hair = hair;
+            this.friend = '张三'
+        }
+        /*重写父类继承过来的方法*/
+        speake(){
+            console.log(`我的狗叫${this.name},小狗的年龄是${this.age},它的毛发是${this.hair},它的朋友是${this.friend}`)
+        }
+
+        study(){
+        /*
+        study方法放在了哪里？——类的原型对象上，供实例使用
+        通过Son实例调用study时，study中的this就是Son实例
+        */
+            console.log('它真的很可爱！')
+            console.log(this)
+        }
+    }
+    const p1 = new Son('富贵',2,'白色');
+    const p2 = new Son('张三',3);
+    p1.speake();
+    p1.study();
+    console.log(p1)
+</script>
+</html>
